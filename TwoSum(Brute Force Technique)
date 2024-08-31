@@ -1,0 +1,9 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        total=len(nums) # total length of string
+        for i in range(total - 1) : # index of string
+            for j in range(i + 1, total): # traverses from the next index of i
+                if(nums[i]+nums[j]==target): # check if both index values add to the target value
+                    return[i,j]
+        return [] #in case of not found
+                    
