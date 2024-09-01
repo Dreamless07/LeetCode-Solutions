@@ -1,0 +1,18 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = [] # create stack
+
+        for i in range(len(s)): #loop in the range of length of input string
+            if stack:
+                last = stack[-1] 
+                if self.is_pair(last, s[i]): #check if parethesis is present in stack
+                    stack.pop() #pop from stack
+                    continue
+            stack.append(s[i])
+        
+        return not stack
+    
+    def is_pair(self, last, cur):
+        if last == "(" and cur == ")" or last == "{" and cur == "}" or last == "[" and cur == "]": #check for valid sequence of parenthesis
+            return True
+        return False
