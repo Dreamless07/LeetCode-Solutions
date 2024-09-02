@@ -1,0 +1,10 @@
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        sp = tp = 0 # subsequence string pointer and target string pointer 
+
+        while sp < len(s) and tp < len(t): # loops till the length of both strings
+            if s[sp] == t[tp]: # checks for both pointers of both strings indexes
+                sp += 1 
+            tp += 1 # traverses both string pointers 
+        
+        return sp == len(s) # returns a bool value if subsequence or not
