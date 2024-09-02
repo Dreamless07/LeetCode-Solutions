@@ -1,0 +1,9 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        res = [] # stores result
+        for i in range(9): # range of row numbers 1 to 9
+            for j in range(9): #range of col numbers 1 to 9
+                element = board[i][j] # stores the value of specific row and col on board
+                if element != '.': # checks if empty or not
+                    res += [(i, element), (element, j), (i // 3, j // 3, element)] #stores the valid elements on board
+        return len(res) == len(set(res))
