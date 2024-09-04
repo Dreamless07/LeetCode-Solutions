@@ -1,0 +1,12 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:    
+        ans = defaultdict(list) #create a dictionary
+
+        for s in strs: # loop every string in group of strings
+            count = [0] * 26 #initialize list with all letter values to 0
+
+            for c in s: #check for each charatcer in the string
+                count[ord(c) - ord("a")] += 1 #gives the asci value of specified value,subtract it from the other and increment the index by 1
+            ans[tuple(count)].append(s) #append into string
+        
+        return ans.values() #return the value
