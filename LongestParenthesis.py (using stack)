@@ -1,0 +1,18 @@
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        stack = [-1] #initialize stack
+        max_len = 0 #initialize length
+
+        for i in range(len(s)): #loop in range the length of the given string
+            if s[i] == "(": #check if first char is opening parenthesis
+                stack.append(i) #append in stack
+            else:
+                stack.pop()
+                if len(stack) == 0: #check for length
+                    stack.append(i) #for empty stack
+                else:
+                    max_len = max(max_len, i - stack[-1]) #calculate max length
+        
+        return max_len 
+        
+        
