@@ -1,0 +1,27 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+         # Initialize two pointers: L for the leftmost position, R for the rightmost
+        L, R = 0, len(height) - 1
+        # Track the maximum height on the left and right sides of the current position
+        leftMax, rightMax = height[L], height[R]
+        # Variable to get the total volume of water trapped
+        res = 0
+        # Continue until L meets R
+        while L < R:
+        # If the height on the left side is shorter, move L to the right
+            if leftMax < rightMax:
+                L+=1
+                # Update leftMax with the maximum height encountered so far on the left
+                leftMax = max(leftMax, height[L])
+                # Add difference between leftMax and the current height at L to the result
+                res += leftMax - height[L]
+            else:
+                # Otherwise, move R to the left
+                R-=1
+                # Update rightMax with the maximum height encountered so far on the right
+                rightMax = max(rightMax, height[R])
+                # Add difference b/w rightMax and the current height at R to the result
+                res += rightMax - height[R]
+        # Return the total volume of water trapped
+        return res
+        
