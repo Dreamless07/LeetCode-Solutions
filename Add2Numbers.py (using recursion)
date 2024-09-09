@@ -1,0 +1,24 @@
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        
+        dummy = ListNode() #dummy node
+        res = dummy #resulting node
+
+        total = carry = 0 #initialize total and carry to 0
+
+        while l1 or l2 or carry: #loop in both lists
+            total = carry
+
+            if l1:
+                total += l1.val
+                l1 = l1.next
+            if l2:
+                total += l2.val
+                l2 = l2.next #retrieve values from both lists and keep traversing
+            
+            num = total % 10 #digit retrieval by modulus
+            carry = total // 10 #carry by divison
+            dummy.next = ListNode(num)
+            dummy = dummy.next
+        
+        return res.next 
