@@ -1,0 +1,17 @@
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0, head) #initialize dummy node
+        prev, cur = dummy, head #prev pointer to dummy and current to head
+
+        while cur and cur.next: #loops till cur and next node are not null
+            npn = cur.next.next #nextpair node set to after the pair is processed
+            second = cur.next #second node of the cur pair
+
+            second.next = cur # for reversal
+            cur.next = npn #swap
+            prev.next = second #prev node points to new pair 1st node
+
+            prev = cur 
+            cur = npn
+        
+        return dummy.next
