@@ -1,0 +1,18 @@
+class NestedIterator:
+    def __init__(self, nestedList: [NestedInteger]):
+        self.stack = [] #create empty stack
+        self.flatten(nestedList) #flattens nested lists
+    
+    def flatten(self, nestedList):
+        for elem in reversed(nestedList): 
+            if elem.isInteger(): #check for element in lists
+                self.stack.append(elem) #append the elem in stack
+            else:
+                self.flatten(elem.getList()) #if it is nested list then flatten and iterate
+
+    def next(self) -> int:
+        return self.stack.pop() #pop the last elem in stack
+
+    
+    def hasNext(self) -> bool:
+         return len(self.stack) > 0 #checks if stack is empty or not
