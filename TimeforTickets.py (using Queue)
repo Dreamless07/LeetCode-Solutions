@@ -1,0 +1,26 @@
+from collections import deque
+class Solution:
+    def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
+        
+        # Let's maintain a Queue, which stores both Index(Person Number) & Num. of tickets Person Wants
+        queue = deque([ [0,tickets[0]] ])
+        # Pushing Values into Queue,, such that Index is also Retained
+        for i in range(1,len(tickets)): # TC : O(N)
+            queue.append( [i, tickets[i]] )
+
+        time_taken = 0 # Final Answer
+
+        while queue: # Worst-Case TC : O(N)
+            front_person = queue.popleft() # Taking out 1st Person from Queue # TC : O(1)
+            
+            if front_person[1] >= 1: # If he wants some Tickets
+                front_person[1] -= 1 # Decreasing Tickets by 1
+                time_taken += 1 # Increasing Time by 1
+
+                queue.append( [front_person[0], front_person[1]] ) # Again Putting the same Person at the End of Line(Queue)
+            
+            # If Front Person has same Index as K & Don't Require any Tickets,, then Break
+            if front_person[0] == k and front_person[1] == 0: 
+                break
+
+        return time_taken
