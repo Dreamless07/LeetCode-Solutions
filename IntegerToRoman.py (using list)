@@ -1,7 +1,7 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
         d1={
-            1000:"M",
+            1000:"M", #every letter with its roman value
             900:"CM",
             500:"D",
             400:"CD",
